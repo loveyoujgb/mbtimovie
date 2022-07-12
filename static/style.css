@@ -46,6 +46,13 @@
     height: 100px;
 }
 
+/*손현수*/
+
+.choice {
+    width: 400px;
+}
+
+
 /*정성일*/
 body {
     background-color: RGBA(232, 52, 78, 0.2);
@@ -181,6 +188,7 @@ body {
 .mbti-button {
     max-width: 1800px;
     margin: 0 auto;
+    margin-top: 20px;
 }
 button {
     width: 100px;
