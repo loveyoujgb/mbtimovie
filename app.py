@@ -15,6 +15,10 @@ db = client.toyproject220712
 def home():
   return render_template('index.html')
 
+@app.route('/movie')
+def movie():
+  return render_template('movie.html')
+
 @app.route("/todo", methods=["POST"])
 def list_post():
   list_receive = request.form['list_give']
