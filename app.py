@@ -37,7 +37,11 @@ def list_post():
   db.test.insert_one(doc)
   return jsonify({'msg': 'db에 연결 성공!'})
 
+##손현수
 
+@app.route('/choice')
+def choice():
+  return render_template('choice.html')
 
 ##정성일
 
