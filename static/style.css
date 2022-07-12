@@ -48,10 +48,10 @@
 body {
     background: #141414;
 }
-.a {
+.top-title {
     color: #ffffff;
 
-    height: 120px;
+    height: 60px;
     width: 100%;
 
     display: flex;
@@ -59,7 +59,8 @@ body {
     justify-content: center;
     align-items: center;
 }
-.b {
+
+.wrap {
     max-width: 1130px;
 
     display: flex;
@@ -68,12 +69,12 @@ body {
 
     margin: 0 auto;
 }
-.b1 {
+.card {
     flex: 1;
     box-sizing: border-box;
     margin-top: 20px;
 }
-.b1- {
+.card- {
     margin-top: 20px;
 }
 .poster {
