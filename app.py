@@ -13,7 +13,11 @@ load_dotenv()
 MONGODB_URL = os.getenv("MONGODB_URL")
 
 from pymongo import MongoClient
-client = MongoClient({MONGODB_URL})
+import certifi
+
+ca = certifi.where()
+
+client = MongoClient({MONGODB_URL}, tlsCAFile=ca)
 db = client.toyproject220712
 
 app = Flask(__name__)
