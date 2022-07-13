@@ -23,9 +23,6 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 
 SECRET_KEY = 'SPARTA'
 
-client = MongoClient('mongodb+srv://test:sparta@cluster0.1ople.mongodb.net/cluster0?retryWrites=true&w=majority')
-db = client.dbsparta_plus_week4
-
 @app.route('/movie')
 def movie():
   return render_template('movie.html')
