@@ -46,34 +46,15 @@
     height: 100px;
 }
 
-/*정성일*/
-body {
-    background-color: RGBA(232, 52, 78, 0.2);
-    min-height: 100vh;
+/*손현수*/
+
+.choice {
+    width: 400px;
 }
 
-.section {
-    padding: 1rem 1.5rem;
-    max-width: 750px;
-    margin: auto;
-}
 
-.title {
-    font-weight: 800;
-    font-size: 5rem;
-    font-family: 'Do Hyeon', sans-serif;
-    font-family: 'Jua', sans-serif;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-family: 'Poppins', sans-serif;
-}
+/*login 페이지 css*/
 
-.subtitle {
-    font-size: 2rem;
-}
-
-.is-sparta {
-    color: #e8344e !important;
-}
 
 .button.is-sparta {
     background-color: #e8344e;
@@ -90,9 +71,12 @@ body {
 .help {
     color: gray;
 }
+.section.section{
+    margin-top: 10%;
+}
 
 /*movie 페이지 css*/
-body {
+.movie-body {
     background: #141414;
 }
 .top-title {
@@ -181,6 +165,7 @@ body {
 .mbti-button {
     max-width: 1800px;
     margin: 0 auto;
+    margin-top: 20px;
 }
 button {
     width: 100px;
@@ -206,4 +191,8 @@ button:hover {
     background: #e50914;
     cursor: pointer;
     /*box-shadow: 0 2px 4px rgba(0, 79, 255, 0.6);*/
+}
+.mainLogo{
+    width: 300px;
+    height:100%
 }

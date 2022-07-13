@@ -10,9 +10,20 @@ function addList() {
         }
     })
 }
-function to_login() {
-location.href="/login"
+function to_choice() {
+location.href="/choice"
 }
+
+/*손현수*/
+
+function to_movie() {
+    window.location.href="/movie"
+}
+
+
+
+
+
 
 /*정성일*/
 function sign_in() {
@@ -157,3 +168,15 @@ function check_dup() {
         }
     });
 }
+
+  function logout() {
+            alert('로그아웃 되었습니다.')
+            window.location.href = "/login"
+       $.removeCookie('mytoken', {path: '/'});
+        }
+
+
+
+
+
+

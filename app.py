@@ -37,7 +37,11 @@ def list_post():
   db.test.insert_one(doc)
   return jsonify({'msg': 'db에 연결 성공!'})
 
+##손현수
 
+@app.route('/choice')
+def choice():
+  return render_template('choice.html')
 
 ##정성일
 
@@ -59,21 +63,6 @@ def login():
     msg = request.args.get("msg")
     return render_template('login.html', msg=msg)
 
-
-@app.route('/user/<username>')
-def user(username):
-    # 각 사용자의 프로필과 글을 모아볼 수 있는 공간
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
-
-        user_info = db.users.find_one({"username": username}, {"_id": False})
-        return render_template('user.html', user_info=user_info, status=status)
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
-
-
 @app.route('/sign_in', methods=['POST'])
 def sign_in():
     # 로그인
@@ -86,7 +75,7 @@ def sign_in():
     if result is not None:
         payload = {
             'id': username_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+            'exp': datetime.utcnow() + timedelta(seconds=60*15)  # 로그인 15분 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
