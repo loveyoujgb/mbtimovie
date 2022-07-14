@@ -17,8 +17,8 @@ import certifi
 
 ca = certifi.where()
 
-client = MongoClient({MONGODB_URL}, tlsCAFile=ca)
-db = client.toyproject220712
+client = MongoClient({'mongodb+srv://test:1126@cluster0.ghqlp.mongodb.net/?retryWrites=true&w=majority'}, tlsCAFile=ca)
+db = client.dbsparta
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -43,6 +43,15 @@ def list_post():
 @app.route('/choice')
 def choice():
   return render_template('choice.html')
+
+
+
+@app.route('/MM', methods=['GET'])
+def show_movie():
+    movies = list(db.MM.find({},{'_id':False}))
+    return jsonify({'all_movie': movies })
+
+
 
 ##정성일
 
