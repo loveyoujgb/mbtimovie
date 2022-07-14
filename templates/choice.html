@@ -1,263 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
 
-<!--  JQuery-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!--app.js에 연결-->
-  <script defer src="../static/app.js"></script>
-<!--  style.css에 연결-->
-  <link rel="stylesheet" href="../static/style.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Webpage Title -->
+    <title>MM-Mbti&Movie</title>
 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Title</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- Font Awesome CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins&display=swap"
+        rel="stylesheet">
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <!--app.js에 연결-->
+    <script defer src="../static/app.js"></script>
+    <!--  style.css에 연결-->
+    <link rel="stylesheet" href="../static/style.css"/>
 </head>
-
 <body>
-  <img class="mainBgImg" src="static/image/1.jpg"/>
-  <div class="mainWrap">
-    <a href="/">
-      <img class="mainLogo" src="static/image/logoA.png"/>
-      </a>
-
-      <div class="top-button">
-        <button onclick="logout()">로그아웃</button>
+<img class="mainBgImg" src="static/image/1.jpg"/>
+<section class="section loginWrap">
+    <section>
+    <div>
+        <img class="mainLogo" src="static/image/logoA.png"/>
     </div>
+</section>
+    <div class="container">
+        <div class="box" style="max-width: 480px;margin:auto">
+            <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                        <div class="field has-addons">
+                            <div class="control has-icons-left" style="width:100%">
+                                <input id="input-username" class="input" type="text" placeholder="아이디">
+                                <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+                            </div>
+                            <div id="btn-check-dup" class="control is-hidden">
+                                <button class="button is-sparta" onclick="check_dup()">중복확인</button>
+                            </div>
 
-      <div class="mbti-button1">
-        <button onclick="show_movie()">INTJ</button>
-        <button onclick="to_movie()">INTP</button>
-        <button onclick="to_movie()">ENTJ</button>
-        <button onclick="to_movie()">ENTP</button>
-        <button onclick="to_movie()">INFJ</button>
-        <button onclick="to_movie()">INFP</button>
-        <button onclick="to_movie()">ENFJ</button>
-        <button onclick="to_movie()">ENFP</button>
-     </div>
-       <div class="mbti-button2">
-        <button onclick="ISTJ()">ISTJ</button>
-        <button onclick="ISFJ()">ISFJ</button>
-        <button onclick="ESTJ()">ESTJ</button>
-        <button onclick="ESFJ()">ESFJ</button>
-        <button onclick="ISTP()">ISTP</button>
-        <button onclick="ISFP()">ISFP</button>
-        <button onclick="ESTP()">ESTP</button>
-        <button onclick="ESFP()">ESFP</button>
+                        </div>
+                        <p id="help-id" class="help is-hidden">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
+                        <p id="help-id-login" class="help is-danger"></p>
+
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input id="input-password" class="input" type="password" placeholder="비밀번호">
+                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <p id="help-password" class="help is-hidden">영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요. 특수문자(!@#$%^&*)도
+                                사용 가능합니다.</p>
+                        </div>
+
+
+                    </div>
+                    <div id="div-sign-in-or-up" class="has-text-centered">
+                        <nav class="level is-mobile">
+                            <button class="level-item button is-sparta" onclick="sign_in()">
+                                로그인
+                            </button>
+
+                        </nav>
+                        <hr>
+                        <h4 class="mb-3">아직 회원이 아니라면</h4>
+                        <nav class="level is-mobile">
+
+                            <button class="level-item button is-sparta is-outlined"
+                                    onclick="toggle_sign_up()">
+                                회원가입하기
+                            </button>
+                        </nav>
+                    </div>
+
+                    <div id="sign-up-box" class="is-hidden">
+                        <div class="mb-5">
+                            <div class="field">
+                                <div class="control has-icons-left" style="width:100%">
+                                    <input id="input-password2" class="input" type="password"
+                                           placeholder="비밀번호 재입력">
+                                    <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                                </div>
+                                <p id="help-password2" class="help is-hidden">비밀번호를 다시 한 번 입력해주세요.</p>
+
+                            </div>
+                        </div>
+                        <nav class="level is-mobile">
+                            <button class="level-item button is-sparta" onclick="sign_up()">
+                                회원가입
+                            </button>
+                            <button class="level-item button is-sparta is-outlined" onclick="toggle_sign_up()">
+                                취소
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+            </article>
+        </div>
     </div>
-
-      <div id="mbti-movie">
-          <div id="INTJ-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="INTP-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ENTJ-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ENTP-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="INFJ-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="INFP-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ENFJ-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ENFP-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ISTJ-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ISFJ-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ESTJ-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ESFJ-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ISTP-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ISFP-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ESTP-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-          <div id="ESFP-movie">
-              <div class="top-title">
-                  <h1>당신에게 추천하는 영화</h1>
-              </div>
-              <div class="poster">
-                  <img src="https://w.namu.la/s/c21312e1ac91283b9e2044f3b2203c2b0574bb1b30a7eae88edd0fa71535198bb8c642d3761ed2b3f86a89c9a55ad5f04b8022cbbdc2780654fd49ec861af6a67fcc1c91a60ea6c67d6b1984a4dcd92b16e97f78d5018f58fda0fa1ba1bb86650d515d6205e061bfcd9c55cfe65a4877"
-                       class="card-img-top" width="100%" height="100%">
-              </div>
-              <div class="contents">
-                  <h5 class="title">타이틀</h5>
-                  <p class="text">내용</p>
-              </div>
-          </div>
-</div>
-  </div>
+</section>
 </body>
 </html>

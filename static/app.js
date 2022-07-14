@@ -11,42 +11,10 @@ function addList() {
     })
 }
 function to_choice() {
-location.href="/choice"
+location.href="/movie"
 }
 
-/*손현수*/
-
-function to_movie() {
-    window.location.href="/movie"
-}
-
-
-$(document).ready(function () {
-    show_movie();
-});
-  function show_movie() {
-      $.ajax({
-          type: 'GET',
-          url: '/MM',
-          data:{},
-          success:function (response){
-            let rows = response['all_movie']
-              for (let i = 0; i <rows.length;i++){
-                  let mbti= rows[i]['mbti']
-                  let title = rows[i]['title']
-                  let story = rows[i]['story']
-                  let director = rows[i]['director']
-                  let reason = rows[i]['reason']
-
-
-              }
-          }
-      });
-  }
-
-
-
-/*정성일*/
+//<------로그인 창-------->
 function sign_in() {
     let username = $("#input-username").val()
     let password = $("#input-password").val()
@@ -76,7 +44,7 @@ function sign_in() {
         success: function (response) {
             if (response['result'] == 'success') {
                 $.cookie('mytoken', response['token'], {path: '/'});
-                window.location.replace("/")
+                window.location.replace("/movie")
                 alert(`${username}님,안녕하세요!`)
             } else {
                 alert(response['msg'])
@@ -85,13 +53,12 @@ function sign_in() {
     });
 }
 
+//<------회원가입 창-------->
 function sign_up() {
     let username = $("#input-username").val()
     let password = $("#input-password").val()
     let password2 = $("#input-password2").val()
     console.log(username, password, password2)
-
-
     if ($("#help-id").hasClass("is-danger")) {
         alert("아이디를 다시 확인해주세요.")
         return;
@@ -99,7 +66,6 @@ function sign_up() {
         alert("아이디 중복확인을 해주세요.")
         return;
     }
-
     if (password == "") {
         $("#help-password").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
         $("#input-password").focus()
@@ -134,7 +100,6 @@ function sign_up() {
             window.location.replace("/login")
         }
     });
-
 }
 
 function toggle_sign_up() {
@@ -189,146 +154,140 @@ function check_dup() {
         }
     });
 }
-
-  function logout() {
+function logout() {
             alert('로그아웃 되었습니다.')
             window.location.href = "/login"
-   $.removeCookie('mytoken', {path: '/movie'});
+       $.removeCookie('mytoken', {path: '/'});
         }
 
-//메인페이지 슬라이드 기능
-    var index = 0;   //이미지에 접근하는 인덱스
-    window.onload = function(){
-        slideShow();
+  function toggle_like(post_id, type) {
+console.log(post_id, type)
+let $a_like = $(`#${post_id} a[aria-label='heart']`)
+let $i_like = $a_like.find("i")
+if ($i_like.hasClass("fa-heart")) {
+$.ajax({
+    type: "POST",
+    url: "/update_like",
+    data: {
+        post_id_give: post_id,
+        type_give: type,
+        action_give: "unlike"
+    },
+    success: function (response) {
+        console.log("unlike")
+        $i_like.addClass("fa-heart-o").removeClass("fa-heart")
+        $a_like.find("span.like-num").text(num2str(response["count"]))
     }
-
-    function slideShow() {
-    var i;
-    var x = document.getElementsByClassName("slide1");  //slide1에 대한 dom 참조
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";   //처음에 전부 display를 none으로 한다.
+})
+} else {
+$.ajax({
+    type: "POST",
+    url: "/update_like",
+    data: {
+        post_id_give: post_id,
+        type_give: type,
+        action_give: "like"
+    },
+    success: function (response) {
+        console.log("like")
+        $i_like.addClass("fa-heart").removeClass("fa-heart-o")
+        $a_like.find("span.like-num").text(num2str(response["count"]))
     }
-    index++;
-    if (index > x.length) {
-        index = 1;  //인덱스가 초과되면 1로 변경
-    }
-    x[index-1].style.display = "block";  //해당 인덱스는 block으로
-    setTimeout(slideShow, 3500);   //함수를 4초마다 호출
+})
 
 }
+}
 
+function post() {
+  let comment = $("#textarea-post").val()
+  let today = new Date().toISOString()
+  $.ajax({
+      type: "POST",
+      url: "/posting",
+      data: {
+          comment_give: comment,
+          date_give: today
+      },
+      success: function (response) {
+          $("#modal-post").removeClass("is-active")
+          window.location.reload()
+      }
+  })
+}
 
-//choice movie 병합
+function num2str(count) {
+      if (count > 10000) {
+          return parseInt(count / 1000) + "k"
+      }
+      if (count > 500) {
+          return parseInt(count / 100) / 10 + "k"
+      }
+      if (count == 0) {
+          return ""
+      }
+      return count
+  }
 
-        function INTJ(){
-            if($('#INTJ-movie').css('display') == 'none'){
-            $('#INTJ-movie').show();
-        }else{
-            $('#INTJ-movie').hide();
-        }
-        }
-        function INTP(){
-            if($('#INTJ-movie').css('display') == 'none'){
-            $('#INTJ-movie').show();
-        }else{
-            $('#INTJ-movie').hide();
-        }
-        }
-        function ENTJ(){
-            if($('#INTJ-movie').css('display') == 'none'){
-            $('#INTJ-movie').show();
-        }else{
-            $('#INTJ-movie').hide();
-        }
-        }
-        function ENTP(){
-            if($('#INTJ-movie').css('display') == 'none'){
-            $('#INTJ-movie').show();
-        }else{
-            $('#INTJ-movie').hide();
-        }
-        }
-         function INFJ(){
-            if($('#INTJ-movie').css('display') == 'none'){
-            $('#INTJ-movie').show();
-        }else{
-            $('#INTJ-movie').hide();
-        }
-        }
-         function INFP(){
-            if($('#INTJ-movie').css('display') == 'none'){
-            $('#INTJ-movie').show();
-        }else{
-            $('#INTJ-movie').hide();
-        }
-        }
-          function ENFJ(){
-            if($('#INTJ-movie').css('display') == 'none'){
-            $('#INTJ-movie').show();
-        }else{
-            $('#INTJ-movie').hide();
-        }
-        }
-          function ENFP(){
-            if($('#INTJ-movie').css('display') == 'none'){
-            $('#INTJ-movie').show();
-        }else{
-            $('#INTJ-movie').hide();
-        }
-        }
-          function ISTJ(){
-            if($('#INTJ-movie').css('display') == 'none'){
-            $('#INTJ-movie').show();
-        }else{
-            $('#INTJ-movie').hide();
-        }
-        }
-          function ISFJ(){
-            if($('#INTJ-movie').css('display') == 'none'){
-            $('#INTJ-movie').show();
-        }else{
-            $('#INTJ-movie').hide();
-        }
-        }
-                  function ESTJ(){
-            if($('#ESTJ-movie').css('display') == 'none'){
-            $('#ESTJ-movie').show();
-        }else{
-            $('#ESTJ-movie').hide();
-        }
-        }
-                  function ESFJ(){
-            if($('#ESFJ-movie').css('display') == 'none'){
-            $('#ESFJ-movie').show();
-        }else{
-            $('#ESFJ-movie').hide();
-        }
-        }
-                          function ISTP(){
-            if($('#ISTP-movie').css('display') == 'none'){
-            $('#ISTP-movie').show();
-        }else{
-            $('#ISTP-movie').hide();
-        }
-        }
-                          function ISFP(){
-            if($('#ISFP-movie').css('display') == 'none'){
-            $('#ISFP-movie').show();
-        }else{
-            $('#ISFP-movie').hide();
-        }
-        }
-                                  function ESTP(){
-            if($('#ESTP-movie').css('display') == 'none'){
-            $('#ESTP-movie').show();
-        }else{
-            $('#ESTP-movie').hide();
-        }
-        }
-                                  function ESFP(){
-            if($('#ESFP-movie').css('display') == 'none'){
-            $('#ESFP-movie').show();
-        }else{
-            $('#ESFP-movie').hide();
-        }
-        }
+function get_posts(username) {
+    if (username == undefined) {
+        username = ""
+    }
+  $.ajax({
+      type: "GET",
+      url: `/get_posts?username_give=${username}`,
+      data: {},
+      success: function (response) {
+          if (response["result"] == "success") {
+              let posts = response["posts"]
+              for (let i = 0; i < posts.length; i++) {
+                  let post = posts[i]
+          }}
+          }})}
+
+function to_movie(mm) {
+        $.ajax({
+      type: "GET",
+      url: '/get_posts',
+      data: {},
+      success: function (response) {
+              let posts = response["posts"]
+              for (let i = 0; i < posts.length; i++) {
+                  let post = posts[i]
+                  let title = post["title"]
+                  let story = post["story"]
+                  let director = post["director"]
+                  let type = post["type"]
+                  let mbti = post["mbti"]
+                  let img = post["img"]
+                  let class_heart = post['heart_by_me'] ? "fa-heart" : "fa-heart-o"
+                  let count_heart = post['count_heart']
+                  let html_temp = `<div class="mbti-list"><div class =${mbti}>
+                                        <div class="card ">
+                                        <div class="poster">
+                                          <img src="${img}" class="card-img-top" width="100%" height="100%" alt="...">
+                                         </div>
+                                        <div class="movie-contents">
+                                          <h5 id = "card-3" class="movie-title">${title}</h5>
+                                            <div class="heart" id="${post["_id"]}">
+                                             <a aria-label="heart" onclick="toggle_like('${post['_id']}', 'heart')">
+                                              <span ><i class="fa ${class_heart} fa-2x" aria-hidden="true"></i></span>&nbsp;<span style="font-size: 18pt" class="like-num">${count_heart}</span>
+                                             </a>
+                                          </div>
+                                          <p class="text">${director}"</p>
+                                          <p class="text">${type}"</p>
+                                          <p style="font-size: 12pt" class="text">${story}"</p>
+                                          <span>#${mbti}</span>
+                                       </div>
+                                      </div>
+                                      </div>
+                                  </div>`
+                  $("#post-outbox").append(html_temp)
+                  var tag = document.getElementsByClassName(mbti)
+                  for (let i = 0; i < tag.length; i++) {
+                      $(tag[i]).hide();
+                  }
+                  var tag_P = document.getElementsByClassName(mm);
+                  $(tag_P[0]).show();
+                  for (let i = 0; i < tag_P.length; i++) {
+                  console.log(tag_P[i])}
+              }}})}
