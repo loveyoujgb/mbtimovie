@@ -13,8 +13,12 @@ load_dotenv()
 MONGODB_URL = os.getenv("MONGODB_URL")
 
 from pymongo import MongoClient
-client = MongoClient({MONGODB_URL})
-db = client.toyproject220712
+import certifi
+
+ca = certifi.where()
+
+client = MongoClient({'mongodb+srv://test:1126@cluster0.ghqlp.mongodb.net/?retryWrites=true&w=majority'}, tlsCAFile=ca)
+db = client.dbsparta
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -39,6 +43,15 @@ def list_post():
 @app.route('/choice')
 def choice():
   return render_template('choice.html')
+
+
+
+@app.route('/MM', methods=['GET'])
+def show_movie():
+    movies = list(db.MM.find({},{'_id':False}))
+    return jsonify({'all_movie': movies })
+
+
 
 ##정성일
 

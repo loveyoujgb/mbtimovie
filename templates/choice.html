@@ -9,6 +9,9 @@
   <script defer src="../static/app.js"></script>
 <!--  style.css에 연결-->
   <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
   <title>Title</title>
 </head>
@@ -25,14 +28,14 @@
     </div>
 
       <div class="mbti-button1">
-        <button onclick="INTJ()">INTJ</button>
-        <button onclick="INTP()">INTP</button>
-        <button onclick="ENTJ()">ENTJ</button>
-        <button onclick="ENTP()">ENTP</button>
-        <button onclick="INFJ()">INFJ</button>
-        <button onclick="INFP()">INFP</button>
-        <button onclick="ENFJ()">ENFJ</button>
-        <button onclick="ENFP()">ENFP</button>
+        <button onclick="show_movie()">INTJ</button>
+        <button onclick="to_movie()">INTP</button>
+        <button onclick="to_movie()">ENTJ</button>
+        <button onclick="to_movie()">ENTP</button>
+        <button onclick="to_movie()">INFJ</button>
+        <button onclick="to_movie()">INFP</button>
+        <button onclick="to_movie()">ENFJ</button>
+        <button onclick="to_movie()">ENFP</button>
      </div>
        <div class="mbti-button2">
         <button onclick="ISTJ()">ISTJ</button>
@@ -44,7 +47,6 @@
         <button onclick="ESTP()">ESTP</button>
         <button onclick="ESFP()">ESFP</button>
     </div>
-
 
       <div id="mbti-movie">
           <div id="INTJ-movie">
@@ -255,12 +257,6 @@
                   <p class="text">내용</p>
               </div>
           </div>
-
-
-
-
-
-
 </div>
   </div>
 </body>

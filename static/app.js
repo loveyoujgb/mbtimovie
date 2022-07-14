@@ -16,7 +16,33 @@ location.href="/choice"
 
 /*손현수*/
 
+function to_movie() {
+    window.location.href="/movie"
+}
 
+
+$(document).ready(function () {
+    show_movie();
+});
+  function show_movie() {
+      $.ajax({
+          type: 'GET',
+          url: '/MM',
+          data:{},
+          success:function (response){
+            let rows = response['all_movie']
+              for (let i = 0; i <rows.length;i++){
+                  let mbti= rows[i]['mbti']
+                  let title = rows[i]['title']
+                  let story = rows[i]['story']
+                  let director = rows[i]['director']
+                  let reason = rows[i]['reason']
+
+
+              }
+          }
+      });
+  }
 
 
 
