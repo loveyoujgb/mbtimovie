@@ -61,9 +61,7 @@
 }
 
 /*손현수*/
-.choice {
-    width: 400px;
-}
+
 
 
 /*login 페이지 css*/
@@ -87,9 +85,6 @@
 }
 
 /*movie 페이지 css*/
-.movie-body {
-    background: #141414;
-}
 .top-title {
     color: #ffffff;
 
@@ -100,6 +95,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 10%;
 }
 
 .wrap {
@@ -119,43 +115,7 @@
 .card- {
     margin-top: 20px;
 }
-.poster {
-    position: relative;
-    width: 328px;
-    height: 494px;
-    margin: 0 auto;
-}
-.card-img-top {
-    object-fit:cover;
-}
-.contents {
-    /*background: #141414;*/
-    position: relative;
-    width: 328px;
-    height: 150px;
 
-    margin: 0 auto;
-    margin-top: 20px;
-}
-.title {
-    color: #E5E5E5;
-
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
-
-    margin-top: 0;
-    margin-bottom: 0;
-}
-.text {
-    color: #E5E5E5;
-
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-
-    margin-top: 10px;
-}
 .other {
     color: #E5E5E5;
 
@@ -173,10 +133,15 @@
     border-bottom: 1px solid #bcbcbc;
     margin: 20px 0;
 }
-.mbti-button {
+.mbti-button1 {
     max-width: 1800px;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 10%;
+}
+.mbti-button2 {
+    max-width: 1800px;
+    margin: 0 auto;
+    margin-top: 5%;
 }
 button {
     width: 100px;
@@ -205,3 +170,85 @@ button:hover {
 }
 
 
+/*choice movie 병합- 정성일*/
+.top-button{
+    position: relative;
+    left: 50%;
+    bottom:50%px;
+}
+
+.poster {
+    width: 20%;
+    height: 20%;
+
+}
+.contents {
+
+}
+
+.title {
+    color: #E5E5E5;
+
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+}
+.text {
+    color: #E5E5E5;
+
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+#INTJ-movie{
+    display: none;
+}
+#INTP-movie{
+    display: none;
+}
+#ENTJ-movie{
+    display: none;
+}
+#ENTP-movie{
+    display: none;
+}
+#INFJ-movie{
+    display: none;
+}
+#INFP-movie{
+    display: none;
+}
+#ENFJ-movie{
+    display: none;
+}
+#ENFP-movie{
+    display: none;
+}
+#ISTJ-movie{
+    display: none;
+}
+#ISFJ-movie{
+    display: none;
+}
+#ESFJ-movie{
+    display: none;
+}
+#ESTJ-movie{
+    display: none;
+}
+#ISTP-movie{
+    display: none;
+}
+#ISFP-movie{
+    display: none;
+}
+#INTJ-movie{
+    display: none;
+}
+#ESTP-movie{
+    display: none;
+}
+#ESFP-movie{
+    display: none;
+}
