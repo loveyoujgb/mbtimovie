@@ -44,7 +44,7 @@ function sign_in() {
         success: function (response) {
             if (response['result'] == 'success') {
                 $.cookie('mytoken', response['token'], {path: '/'});
-                window.location.replace("/movie")
+                window.location.replace("/")
                 alert(`${username}님,안녕하세요!`)
             } else {
                 alert(response['msg'])
@@ -160,8 +160,7 @@ function logout() {
        $.removeCookie('mytoken', {path: '/'});
         }
 
-  function toggle_like(post_id, type) {
-console.log(post_id, type)
+function toggle_like(post_id, type) {
 let $a_like = $(`#${post_id} a[aria-label='heart']`)
 let $i_like = $a_like.find("i")
 if ($i_like.hasClass("fa-heart")) {
@@ -174,7 +173,6 @@ $.ajax({
         action_give: "unlike"
     },
     success: function (response) {
-        console.log("unlike")
         $i_like.addClass("fa-heart-o").removeClass("fa-heart")
         $a_like.find("span.like-num").text(num2str(response["count"]))
     }
@@ -189,7 +187,6 @@ $.ajax({
         action_give: "like"
     },
     success: function (response) {
-        console.log("like")
         $i_like.addClass("fa-heart").removeClass("fa-heart-o")
         $a_like.find("span.like-num").text(num2str(response["count"]))
     }
@@ -228,6 +225,8 @@ function num2str(count) {
       return count
   }
 
+
+//로그인 토큰을 가져와서 jinja를 사용하기 위한 get요청
 function get_posts(username) {
     if (username == undefined) {
         username = ""
@@ -237,15 +236,10 @@ function get_posts(username) {
       url: `/get_posts?username_give=${username}`,
       data: {},
       success: function (response) {
-          if (response["result"] == "success") {
-              let posts = response["posts"]
-              for (let i = 0; i < posts.length; i++) {
-                  let post = posts[i]
-          }}
-          }})}
+      }})}
 
 function to_movie(mm) {
-        $.ajax({
+    $.ajax({
       type: "GET",
       url: '/get_posts',
       data: {},
@@ -288,6 +282,4 @@ function to_movie(mm) {
                   }
                   var tag_P = document.getElementsByClassName(mm);
                   $(tag_P[0]).show();
-                  for (let i = 0; i < tag_P.length; i++) {
-                  console.log(tag_P[i])}
               }}})}

@@ -24,22 +24,9 @@ def list_post():
   db.test.insert_one(doc)
   return jsonify({'msg': 'db에 연결 성공!'})
 
-@app.route('/choice')
-def choice():
-  return render_template('choice.html')
-
-
 @app.route('/')
 def home():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-
-        return render_template('index.html')
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+     return render_template('index.html')
 
 @app.route('/login')
 def login():
@@ -59,8 +46,7 @@ def sign_in():
             'id': username_receive,
             'exp': datetime.utcnow() + timedelta(seconds=60*60*24)
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-            # 파이참 외 원격 배포시 우측의 코드를 위에 입력하세요 .decode('utf-8')
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
         return jsonify({'result': 'success', 'token': token})
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
