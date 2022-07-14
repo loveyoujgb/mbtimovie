@@ -16,11 +16,6 @@ location.href="/choice"
 
 /*손현수*/
 
-function to_movie() {
-    window.location.href="/movie"
-}
-
-
 
 
 
@@ -197,11 +192,117 @@ function check_dup() {
 }
 
 
+//choice movie 병합
 
-
-
-
-
-
-
-
+        function INTJ(){
+            if($('#INTJ-movie').css('display') == 'none'){
+            $('#INTJ-movie').show();
+        }else{
+            $('#INTJ-movie').hide();
+        }
+        }
+        function INTP(){
+            if($('#INTJ-movie').css('display') == 'none'){
+            $('#INTJ-movie').show();
+        }else{
+            $('#INTJ-movie').hide();
+        }
+        }
+        function ENTJ(){
+            if($('#INTJ-movie').css('display') == 'none'){
+            $('#INTJ-movie').show();
+        }else{
+            $('#INTJ-movie').hide();
+        }
+        }
+        function ENTP(){
+            if($('#INTJ-movie').css('display') == 'none'){
+            $('#INTJ-movie').show();
+        }else{
+            $('#INTJ-movie').hide();
+        }
+        }
+         function INFJ(){
+            if($('#INTJ-movie').css('display') == 'none'){
+            $('#INTJ-movie').show();
+        }else{
+            $('#INTJ-movie').hide();
+        }
+        }
+         function INFP(){
+            if($('#INTJ-movie').css('display') == 'none'){
+            $('#INTJ-movie').show();
+        }else{
+            $('#INTJ-movie').hide();
+        }
+        }
+          function ENFJ(){
+            if($('#INTJ-movie').css('display') == 'none'){
+            $('#INTJ-movie').show();
+        }else{
+            $('#INTJ-movie').hide();
+        }
+        }
+          function ENFP(){
+            if($('#INTJ-movie').css('display') == 'none'){
+            $('#INTJ-movie').show();
+        }else{
+            $('#INTJ-movie').hide();
+        }
+        }
+          function ISTJ(){
+            if($('#INTJ-movie').css('display') == 'none'){
+            $('#INTJ-movie').show();
+        }else{
+            $('#INTJ-movie').hide();
+        }
+        }
+          function ISFJ(){
+            if($('#INTJ-movie').css('display') == 'none'){
+            $('#INTJ-movie').show();
+        }else{
+            $('#INTJ-movie').hide();
+        }
+        }
+                  function ESTJ(){
+            if($('#ESTJ-movie').css('display') == 'none'){
+            $('#ESTJ-movie').show();
+        }else{
+            $('#ESTJ-movie').hide();
+        }
+        }
+                  function ESFJ(){
+            if($('#ESFJ-movie').css('display') == 'none'){
+            $('#ESFJ-movie').show();
+        }else{
+            $('#ESFJ-movie').hide();
+        }
+        }
+                          function ISTP(){
+            if($('#ISTP-movie').css('display') == 'none'){
+            $('#ISTP-movie').show();
+        }else{
+            $('#ISTP-movie').hide();
+        }
+        }
+                          function ISFP(){
+            if($('#ISFP-movie').css('display') == 'none'){
+            $('#ISFP-movie').show();
+        }else{
+            $('#ISFP-movie').hide();
+        }
+        }
+                                  function ESTP(){
+            if($('#ESTP-movie').css('display') == 'none'){
+            $('#ESTP-movie').show();
+        }else{
+            $('#ESTP-movie').hide();
+        }
+        }
+                                  function ESFP(){
+            if($('#ESFP-movie').css('display') == 'none'){
+            $('#ESFP-movie').show();
+        }else{
+            $('#ESFP-movie').hide();
+        }
+        }
